@@ -9,3 +9,12 @@ function mudar(md){
     }
 
 }
+
+function mudarForm(ind){
+    var display = document.getElementById(ind).style.display;
+    if(display =='none'){
+        document.getElementById(ind).style.display ='block';
+    }else{
+        document.getElementById(ind).style.display = 'none';
+    }
+}

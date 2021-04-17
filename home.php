@@ -33,18 +33,17 @@
         <div class="container-fluid">
             <div class="row">
 
-                <nav id="sidbarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div class="position-sticky pt-3">
-                        <ul class="nav flex-column">
-                            <li class="nav-item"><p id="bt_exibir" onclick="mudar('tabelaFunc')">Exibir</p></li>
-                            <li class="nav-item"><p>Inserir</p></li>                            
-                            <li class="nav-item"><p>Alterar</ps=></li>
-                            <li class="nav-item"><p>Remover</p=></li>
-                        </ul>
+                <nav id="sidbarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" >
+                    <div class="position-sticky pt-3 col-6 mx-auto d-grid gap-2">
+                        <button type="button" class="btn btn-outline-dark" id="bt_exibir" onclick="mudar('tabelaFunc')">Exibir</button>
+                        <button type="button" class="btn btn-outline-dark" id="bt_inserir" onclick="mudarForm('inserirDados')">Inserir</button>                           
+                        <button type="button" class="btn btn-outline-dark">Alterar</button>
+                        <button type="button" class="btn btn-outline-dark">Remover</button>
                     </div>
                 </nav>                     
                 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
                     <div id="tabelaFunc" class="table-responsive" style="display:none">
                         <?php
                             require_once "funcionarios.php";
@@ -74,6 +73,19 @@
                             echo"</table>";
                         ?>
                     </div>
+
+                    <div id="inserirDados" style="display:none">
+                        <h3>Inserir Funcionários</h3>
+                        <form action="" method="post">
+                        <p><label for="nomeF">Nome:</label><br />
+                        <input type="text" name="nomeF" required></p>
+                        <p><label for="datanascF">Data de Nascimento:</label><br />
+                        <input type="text" name="datanascF"></p>
+                        <p><label for="cpfF">CPF:</label><br />
+                        <input type="text" name="cpfF"></p>
+                        </form>
+                    </div>
+
                 </main>
             </div>
         </div>
