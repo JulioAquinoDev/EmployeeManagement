@@ -2,13 +2,12 @@
     require_once "conexao.php";
     class Usuarios{
         private $idusuario;
-        private $nome;
+        private $nomeusuario;
         private $login;
         private $senha;
         private $email;
         private $telefone;
         private $cadastro;
-        private $nivel;
         private $status;
 
         public function setIdUsuario($idusuario){
@@ -17,11 +16,11 @@
         public function getId(){
             return $this->idusuario;
         }
-        public function setNome($nome){
-            $this->nome=$nome;
+        public function setNomeUsuario($nomeusuario){
+            $this->nomeusuario=$nomeusuario;
         }
-        public function getNome(){
-            return $this->nome;
+        public function getNomeUsuario(){
+            return $this->nomeusuario;
         }
         public function setLogin($login){
             $this->login=$login;

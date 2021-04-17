@@ -2,12 +2,13 @@
     require_once "conexao.php";
     class Funcionarios{
         private $idfuncionario;
-        private $nome;
+        private $nomefuncionario;
         private $datanascimento;
         private $cpf;
         private $cadastro;
-        private $id_cargo;
-        private $id_setor;
+        private $salario;
+        private $cargo;
+        private $setor;
         private $id_experiencia;
         private $id_usuario;
 
@@ -17,11 +18,11 @@
         public function getIdFuncionario(){
             return $this->idfuncionario;
         }
-        public function setNome($nome){
-            $this->nome = $nome;
+        public function setNomeFuncionario($nomefuncionario){
+            $this->nomefuncionario = $nomefuncionario;
         }
-        public function getNome(){
-            return $this->nome;
+        public function getNomeFuncionario(){
+            return $this->nomefuncionario;
         }
         public function setDataNascimento($datanascimento){
             $this->datanascimento = $datanascimento;
@@ -41,17 +42,23 @@
         public function getCadastro(){
             return $this->cadastro;
         }
-        public function setId_Cargo($id_cargo){
-            $this->id_cargo = $id_cargo;
+        public function setSalario($salario){
+            $this->salario = $salario;
         }
-        public function getId_Cargo(){
-            return $this->id_cargo;
+        public function getSalario(){
+            return $this->salario;
         }
-        public function setId_Setor($id_setor){
-            $this->id_setor = $id_setor;
+        public function setCargo($cargo){
+            $this->cargo = $cargo;
         }
-        public function getId_Setor(){
-            return $this->id_setor;
+        public function getCargo(){
+            return $this->cargo;
+        }
+        public function setSetor($setor){
+            $this->setor = $setor;
+        }
+        public function getSetor(){
+            return $this->setor;
         }
         public function setId_Experiencia($id_experiencia){
             $this->id_experiencia = $id_experiencia;
@@ -86,7 +93,7 @@
         public function buscarTodos(){
             $conectado = new conexao();
             $st = $conectado->conn->prepare(
-            "SELECT * FROM funcionarios ORDER BY nome");
+            "SELECT * FROM funcionarios ORDER BY nomefuncionario");
             $st->execute();
             return $st->fetchAll();
         }

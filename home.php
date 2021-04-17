@@ -53,19 +53,20 @@
                             echo"<thead>";
                             echo"<tr>";
                             echo"<th>ID</th><th>Nome</th><th>Data de Nascimento</th>";
-                            echo"<th>CPF</th><th>Data do Cadastro</th><th>Cargo</th>";
+                            echo"<th>CPF</th><th>Cadastro</th><th>Salario</th><th>Cargo</th>";
                             echo"<th>Setor</th><th>Experiência</th><th>Responsável</th>";
                             echo"</tr>";
                             echo"</thead>";
                             foreach($resp as $linha){
                                 echo"<tr>";
                                 echo"<td>".$linha['idfuncionario']."</td>";
-                                echo"<td>".$linha['nome']."</td>";
+                                echo"<td>".$linha['nomefuncionario']."</td>";
                                 echo"<td>".$linha['datanascimento']."</td>";
                                 echo"<td>".$linha['cpf']."</td>";
                                 echo"<td>".$linha['cadastro']."</td>";
-                                echo"<td>".$linha['id_cargo']."</td>";
-                                echo"<td>".$linha['id_setor']."</td>";
+                                echo"<td>".$linha['salario']."</td>";
+                                echo"<td>".$linha['cargo']."</td>";
+                                echo"<td>".$linha['setor']."</td>";
                                 echo"<td>".$linha['id_experiencia']."</td>";
                                 echo"<td>".$linha['id_usuario']."</td>";
                                 echo"</tr>";
