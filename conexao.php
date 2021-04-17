@@ -1,8 +1,18 @@
 <?php
-    $host = 'localhost';
-    $user = 'root';
-    $senha_bd = '';
-    $bd = 'gerenc_empresa';
-    
-    $conexao = mysqli_connect($host,$user,$senha_bd,$bd) or die ('Não foi possivél conectar.');
+    class conexao{
+         private $db="gerenc_empresa";
+         private $user="root";
+         private $senha="";
+         private $servidor="localhost";
+         public $conn;
+
+         public function __construct(){
+               try{
+                    $this->conn = new PDO( "mysql:host=".$this->servidor.";dbname=".$this->db,$this->user,$this->senha);
+	               $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+               }catch(PDOException $e){
+                     echo "ERRO: ".$e->getMessage();
+               }			
+         }		
+    }
 ?>

@@ -10,7 +10,7 @@
         <main class="form-signin px-3">
             <div class="container base-login">
                 <form method="post" action="login.php">
-                    <fieldset>
+                    
                         <h1 class="h3 mb-3 fw-normal">Login</h1>
                         <div class="form-floating">
                             <input type="text" name="usuario" class="form-control" id="floatingInput" maxlength="25" placeholder="name.0000" />
@@ -27,7 +27,7 @@
                             </label>
                         </div>
                         <button type="submit" class="w-100 btn-lg btn btn-outline-primary">Entrar</button>
-                    </fieldset>
+                    
                 </form>
             </div>
         </main>

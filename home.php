@@ -47,9 +47,9 @@
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     <div id="tabelaFunc" class="table-responsive" style="display:none">
                         <?php
-                            require_once 'funcionarios.php';
+                            require_once "funcionarios.php";
                             $funcio = new funcionarios();
-                            #$resp = $funcio->buscarTodos();
+                            $resp = $funcio->buscarTodos();
                             echo"<table class='table table-dark table-sm'>";
                             echo"<thead>";
                             echo"<tr>";
@@ -58,6 +58,19 @@
                             echo"<th>Setor</th><th>Experiência</th><th>Responsável</th>";
                             echo"</tr>";
                             echo"</thead>";
+                            foreach($resp as $linha){
+                                echo"<tr>";
+                                echo"<td>".$linha['idfuncionario']."</td>";
+                                echo"<td>".$linha['nome']."</td>";
+                                echo"<td>".$linha['datanascimento']."</td>";
+                                echo"<td>".$linha['cpf']."</td>";
+                                echo"<td>".$linha['cadastro']."</td>";
+                                echo"<td>".$linha['id_cargo']."</td>";
+                                echo"<td>".$linha['id_setor']."</td>";
+                                echo"<td>".$linha['id_experiencia']."</td>";
+                                echo"<td>".$linha['id_usuario']."</td>";
+                                echo"</tr>";
+                            }
                             echo"</table>";
                         ?>
                     </div>
