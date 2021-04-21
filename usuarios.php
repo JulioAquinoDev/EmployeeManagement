@@ -61,10 +61,16 @@
 
 
 
-        public function cadastrar(){
-
-        }
-        public function logar(){
-
+        public function inserirU(){
+            $cnx = new conexao();
+            $us=$cnx->conn->prepare("INSERT INTO
+            usuarios(nomeusuario, login, senha,email,telefone)".
+            "values(:n,:l,:s,:e,:t)");
+            $us->bindValue(":n",$this->getNomeUsuario());
+            $us->bindValue(":l",$this->getLogin());
+            $us->bindValue(":s",$this->getSenha());
+            $us->bindValue(":e",$this->getEmail());
+            $us->bindValue(":t",$this->getTelefone());
+            return $us->execute();
         }
     }

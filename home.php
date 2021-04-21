@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     require_once "verifica.php";
+    require_once "conexao.php";
 ?>
 <html>
     <head>
@@ -75,20 +76,48 @@
                         ?>
                     </div>
 
-                    <div id="inserirDados" style="display:none">
+                    <div id="inserirDados" style="display:none" class="inserirDados">
+                        
                         <h3>Inserir Funcionários</h3>
+                        
                         <form action="" method="post">
                         <p><label for="nomeF">Nome:</label><br />
                         <input type="text" name="nomeF" required></p>
                         <p><label for="datanascF">Data de Nascimento:</label><br />
-                        <input type="text" name="datanascF"></p>
+                        <input type="date" name="datanascF"></p>
                         <p><label for="cpfF">CPF:</label><br />
                         <input type="text" name="cpfF"></p>
+                        <p><label for="salarioF">Salario:</label><br />
+                        <input type="text" name="salarioF" placeholder="5000.00"></p>
+                        <p><label for="cargoF">Cargo:</label><br />
+                        <input type="text" name="cargoF"></p>
+                        <p><label for="setorF">Setor:</label><br />
+                        <input type="text" name="setorF"></p>
+                        <p><label for="experienciaF">Experiência:</label><br />
+                        <select name="fExp">
+                            <option>Selecione:</option>
+                            <?php
+                            $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
+                            $stmt=$conn->prepare("select * from experiencia");
+                            $stmt->execute();
+                            $resp=$stmt->fetchAll();
+                            foreach($resp as $linha){?>
+                            <option value="<?php echo $linha['idexperiencia'];?>">
+                            <?php echo $linha['tipo']." ".$linha['quantidade']." ".$linha['tempo']; ?>
+                            </option>
+                            <?php
+                            }?>      
+                                
+                            
+                        </select></p>
                         </form>
+                        
                     </div>
 
                 </main>
             </div>
         </div>
+        
+        
     </body>
 </html>

@@ -22,3 +22,4 @@
         echo "<p><a href='index.php'>".
             "Tente novamente.</a></p>";
     }
+?>

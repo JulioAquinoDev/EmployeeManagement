@@ -60,27 +60,39 @@
                         <img src="./assets/img/login.svg" alt="imagem login" class="img-fluid px-0 pt-5">
                     </div>
                     <div class="col-lg-7 px-5 pt-5">
-                        <div id="loginPrincipal">
-                            <h1 class="font-weigth-bold py-3">Fazer Login</h1>
-                            <h4>Bem-vindo ao seu gerenciador de funcionários</h4>
-                            <form action="login.php" method="post">
+                        <div id="cadastroPrincipal">
+                            <h1 class="font-weigth-bold py-3">Fazer Cadastro</h1>
+                            <form action="inserirU.php" method="post">
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <input type="text" name="usuario" placeholder="Login:" class="form-control my-4 p-3">
+                                        <input type="text" name="nomeC" placeholder="Nome:" class="form-control my-4 p-3">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <input type="password" name="senha" placeholder="Senha" class="form-control my-3 p-3">
+                                        <input type="text" name="loginC" placeholder="Login:" class="form-control my-4 p-3">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <button type="submit" class="btn1 mt-3 mb-5">Logar</button>
+                                        <input type="password" name="senhaC" placeholder="Senha:" class="form-control my-4 p-3">
                                     </div>
                                 </div>
-                                <a href="#">Esqueceu a senha?</a>
-                                <p>Não tem uma conta? <a href="cadastro.php">Crie uma conta aqui</a></p>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="text" name="emailC" placeholder="E-mail:" class="form-control my-4 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="text" name="telefoneC" placeholder="Telefone:" class="form-control my-4 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <button type="submit" class="btn1 mt-3 mb-5">Cadastrar</button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
