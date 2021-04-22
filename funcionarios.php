@@ -78,8 +78,20 @@
 
         }
 
-        public function inserir(){
-
+        public function inserirF(){
+            $cnx = new conexao();
+            $fc=$cnx->conn->prepare("INSERT INTO
+            funcionarios(nomefuncionario, datanascimento, cpf, salario, cargo, setor, id_experiencia, id_usuario)".
+            "values(:n,:d,:cp,:sl,:c,:s,:e,:u)");
+            $fc->bindValue(":n",$this->getNomeFuncionario());
+            $fc->bindValue(":d",$this->getDataNascimento());
+            $fc->bindValue(":cp",$this->getCPF());
+            $fc->bindValue(":sl",$this->getSalario());
+            $fc->bindValue(":c",$this->getCargo());
+            $fc->bindValue(":s",$this->getSetor());
+            $fc->bindValue(":e",$this->getId_Experiencia());
+            $fc->bindValue(":u",$this->getId_Usuario());
+            return $us->execute();
         }
 
         public function alterar(){
@@ -93,7 +105,7 @@
         public function buscarTodos(){
             $conectado = new conexao();
             $st = $conectado->conn->prepare(
-            "SELECT * FROM funcionarios ORDER BY nomefuncionario");
+            "SELECT * FROM funcionarios ORDER BY nomefuncionario DESC");
             $st->execute();
             return $st->fetchAll();
         }

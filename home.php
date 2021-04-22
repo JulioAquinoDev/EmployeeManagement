@@ -62,9 +62,9 @@
                                 echo"<tr>";
                                 echo"<td>".$linha['idfuncionario']."</td>";
                                 echo"<td>".$linha['nomefuncionario']."</td>";
-                                echo"<td>".$linha['datanascimento']."</td>";
-                                echo"<td>".$linha['cpf']."</td>";
-                                echo"<td>".$linha['cadastro']."</td>";
+                                echo"<td>".date('d/m/Y',strtotime($linha['datanascimento']))."</td>";
+                                echo"<td>".substr($linha['cpf'],0,3).'.'.substr($linha['cpf'],3,3).'.'.substr($linha['cpf'],6,3).'-'.substr($linha['cpf'],9,2)."</td>";
+                                echo"<td>".date('d/m/Y',strtotime($linha['cadastro']))."</td>";
                                 echo"<td>".$linha['salario']."</td>";
                                 echo"<td>".$linha['cargo']."</td>";
                                 echo"<td>".$linha['setor']."</td>";
@@ -94,22 +94,21 @@
                         <p><label for="setorF">Setor:</label><br />
                         <input type="text" name="setorF"></p>
                         <p><label for="experienciaF">Experiência:</label><br />
-                        <select name="fExp">
+                        <select name="experienciaF">
                             <option>Selecione:</option>
                             <?php
-                            $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
-                            $stmt=$conn->prepare("select * from experiencia");
-                            $stmt->execute();
-                            $resp=$stmt->fetchAll();
-                            foreach($resp as $linha){?>
-                            <option value="<?php echo $linha['idexperiencia'];?>">
-                            <?php echo $linha['tipo']." ".$linha['quantidade']." ".$linha['tempo']; ?>
-                            </option>
-                            <?php
-                            }?>      
-                                
-                            
+                                $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
+                                $stmt=$conn->prepare("select * from experiencia");
+                                $stmt->execute();
+                                $resp=$stmt->fetchAll();
+                                foreach($resp as $linha){?>
+                                    <option value="<?php echo $linha['idexperiencia'];?>">
+                                        <?php echo $linha['tipo']." ".$linha['quantidade']." ".$linha['tempo']; ?>
+                                    </option>
+                                <?php
+                                }?>
                         </select></p>
+                        <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
                         </form>
                         
                     </div>
