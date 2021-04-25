@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     require_once "verifica.php";
-    require_once "conexao.php";
+    
 ?>
 <html>
     <head>
@@ -17,9 +17,9 @@
 
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">        
             <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3">           
-                <?php           
+                <?php          
                     echo "<p>Gerenciamento de funcionários</p>";
-                    echo "<p>Bem vindo, ".$_SESSION['user']."!</p>";
+                    echo "<p>Bem vindo, ".$_SESSION['nameUser']."!</p>";
                 ?>
             </div>    
             <ul class="navbar-nav px-3">
@@ -65,11 +65,11 @@
                                 echo"<td>".date('d/m/Y',strtotime($linha['datanascimento']))."</td>";
                                 echo"<td>".substr($linha['cpf'],0,3).'.'.substr($linha['cpf'],3,3).'.'.substr($linha['cpf'],6,3).'-'.substr($linha['cpf'],9,2)."</td>";
                                 echo"<td>".date('d/m/Y',strtotime($linha['cadastro']))."</td>";
-                                echo"<td>".$linha['salario']."</td>";
+                                echo"<td>"."R$ ".$linha['salario']."</td>";
                                 echo"<td>".$linha['cargo']."</td>";
                                 echo"<td>".$linha['setor']."</td>";
-                                echo"<td>".$linha['id_experiencia']."</td>";
-                                echo"<td>".$linha['id_usuario']."</td>";
+                                echo"<td>".$linha['tipo']." de ".$linha['quantidade']." ".$linha['tempo']."</td>";
+                                echo"<td>".$linha['nomeusuario']."</td>";
                                 echo"</tr>";
                             }
                             echo"</table>";

@@ -90,8 +90,8 @@
             $fc->bindValue(":c",$this->getCargo());
             $fc->bindValue(":s",$this->getSetor());
             $fc->bindValue(":e",$this->getId_Experiencia());
-            $fc->bindValue(":u",$this->getId_Usuario());
-            return $us->execute();
+            $fc->bindValue(":u",$_SESSION['codUser']);
+            return $fc->execute();
         }
 
         public function alterar(){
@@ -105,7 +105,10 @@
         public function buscarTodos(){
             $conectado = new conexao();
             $st = $conectado->conn->prepare(
-            "SELECT * FROM funcionarios ORDER BY nomefuncionario DESC");
+            "SELECT * FROM funcionarios as f 
+            inner join usuarios as u on f.id_usuario = idusuario
+            inner join experiencia as e on f.id_experiencia = e.idexperiencia
+            ORDER BY nomefuncionario DESC");
             $st->execute();
             return $st->fetchAll();
         }
