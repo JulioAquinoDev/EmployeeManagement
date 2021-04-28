@@ -20,6 +20,7 @@
             .btnhm{width:80px;}
             .tablef{font-size: 16px;}
             .menu{background-color: #FFFFFF;width:1200px;display:flex;}
+            .btnsair {background-color:#ECF0F1;}
         </style>
     </head>
 
@@ -42,63 +43,31 @@
         </header>
 
         <div class="px-4 py-5 my-2 text-center">
+            
+            <?php
+                require_once 'funcionarios.php';	
+                if(isset($_GET['idfuncionario'])){
+                $fc = new funcionarios();
+                $fc->setIdFuncionario($_GET['idfuncionario']);
+                $resp=$fc->buscarTodosId();
+                ?>
+                    <h3>Alterar dados do funcionário</h3>
+                    <form action="alterarF2.php" method="POST">
+                        <table class="table table-striped">
+                            <tr><td><p>Id:</td><td><p><input type="number" value="<?php echo $resp['idfuncionario']?>" name="id" readonly="true"></p></td></tr>
+                            <tr><td><p>Nome:</td><td><p><input type="text" value="<?php echo $resp['nomefuncionario']?>" name="nome" required></p></td></tr>
+                            <tr><td><p>Data de Nascimento:</td><td><p><input type="date" value="<?php echo $resp['datanascimento']?>" name="datanasc"></p></td></tr>
+                            <tr><td><p>CPF:</td><td><p><input type="text" value="<?php echo $resp['cpf']?>" name="cpf"></p></td></tr>
+                            <tr><td><p>Salario:</td><td><p><input type="text" value="<?php echo $resp['salario']?>" name="salario"></p></td></tr>
+                            <tr><td><p>Cargo:</td><td><p><input type="text" value="<?php echo $resp['cargo']?>" name="cargo"></p></td></tr>
+                            <tr><td><p>Setor:</td><td><p><input type="text" value="<?php echo $resp['setor']?>" name="setor"></p></td></tr>  
+                        </table>
+                        <p ><input class='btn btnhm btn-outline-primary'd type="submit" value="Alterar"></p>
+                    </form>
+                <?php
+                }
+            ?>
 
-			<?php
-				require_once 'funcionarios.php';
-				require_once "verifica.php";
-
-				
-				if(isset($_POST['nomeF'])){
-					$func = new funcionarios();
-					$func->setNomeFuncionario($_POST['nomeF']);
-					$func->setDataNascimento(date("Y-m-d", strtotime($_POST['datanascF'])));
-					$func->setCPF($_POST['cpfF']);
-					$func->setSalario($_POST['salarioF']);
-					$func->setCargo($_POST['cargoF']);
-					$func->setSetor($_POST['setorF']);
-					$func->setId_Experiencia($_POST['experienciaF']);
-					$func->setId_Usuario($_SESSION['codUser']);
-                    
-
-                    $cpf = $_POST['cpfF'];
-
-                    $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
-                    $stmt=$conn->prepare("select * from Funcionarios where cpf='$cpf'");
-                    $stmt->execute();
-                    
-
-                    if($stmt->rowCount() == 1){
-                        ?>
-                        <script>
-                        window.alert("CPF já cadastrado!");
-                        window.location.href="inserir.php";
-                        </script>
-                        <?php
-                    }else{
-                        if($func->inserirF()){
-                            ?>
-                            <script>
-                            window.alert("Funcionario inserido com sucesso!");
-                            window.location.href="home.php";
-                            </script>
-                            <?php
-                        }else{
-                            ?>
-                            <script>
-                            window.alert("Erro ao cadastrar Funcionario!");
-                            window.location.href="inserir.php";
-                            </script>
-                            <?php
-                        }
-                    }
-
-
-                    
-                    
-					
-				}
-			?>
-
-		</div>
+        </div>
     </body>
 </html>

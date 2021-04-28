@@ -5,6 +5,13 @@
         private $tipo;
         private $quantidade;
         private $tempo;
+        
+        function _construct($idexperiencia,$tipo,$quantidade,$tempo){
+            $this->idexperiencia = $idexperiencia;
+            $this->tipo = $tipo;
+            $this->quantidade = $quantidade;
+            $this->tempo = $tempo;
+        }
 
         public function setIdExperiencia($idexperiencia){
             $this->idexperiencia = $idexperiencia;
@@ -31,20 +38,11 @@
             return $this->tempo;
         }
 
-        public inserir(){
-
-        }
-        public alterar(){
-
-        }
-        public remover(){
-            
-        }
         public buscarTodosExp(){
             $conectado = new conexao();
             $st = $conectado->conn->prepare(
             "SELECT * FROM experiencia ORDER BY idexperiencia");
             $st->execute();
             return $st->fetchAll();
-        }
+        }        
     }

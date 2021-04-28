@@ -59,8 +59,6 @@
             return $this->status;
         }
 
-
-
         public function inserirU(){
             $cnx = new conexao();
             $us=$cnx->conn->prepare("INSERT INTO
@@ -72,5 +70,22 @@
             $us->bindValue(":e",$this->getEmail());
             $us->bindValue(":t",$this->getTelefone());
             return $us->execute();
+        }
+
+        public function alterarU(){
+            $conectado= new conexao();
+			$us=$conectado->conn->prepare(
+			"update usuarios set senha=:s where email=:e");
+			$us->bindValue(":e",$this->getEmail());
+			$us->bindValue(":s",$this->getSenha());
+			return $us->execute();
+        }
+        public function buscarTodosEmail(){
+            $conectado= new conexao();
+			$us=$conectado->conn->prepare(
+			"select * from usuarios where email=:e");
+			$us->bindValue(":e",$this->getEmail());
+			$us->execute();	
+			return $us->fetch();
         }
     }

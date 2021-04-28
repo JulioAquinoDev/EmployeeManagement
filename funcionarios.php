@@ -28,7 +28,7 @@
             $this->datanascimento = $datanascimento;
         }
         public function getDataNascimento(){
-            return $this->datanascimento;
+            return $this->datanascimento; 
         }
         public function setCPF($cpf){
             $this->cpf = $cpf;
@@ -90,16 +90,34 @@
             $fc->bindValue(":c",$this->getCargo());
             $fc->bindValue(":s",$this->getSetor());
             $fc->bindValue(":e",$this->getId_Experiencia());
-            $fc->bindValue(":u",$_SESSION['codUser']);
+            $fc->bindValue(":u",$this->getId_Usuario());
             return $fc->execute();
         }
 
         public function alterar(){
 
+            $conectado= new conexao();
+			$fc=$conectado->conn->prepare(
+			"update funcionarios set nomefuncionario=:n,
+            datanascimento=:i, cpf=:t,
+            salario=:sl, cargo=:cg,"."setor=:st
+            where idfuncionario=:id");
+			$fc->bindValue(":id",$this->getIdFuncionario());
+			$fc->bindValue(":n",$this->getNomeFuncionario());
+			$fc->bindValue(":i",$this->getDataNascimento());
+			$fc->bindValue(":t",$this->getCPF());
+            $fc->bindValue(":sl",$this->getSalario());
+            $fc->bindValue(":cg",$this->getCargo());
+            $fc->bindValue(":st",$this->getSetor());
+			return $fc->execute();
         }
 
         public function apagar(){
-
+            $conectado= new conexao();
+			$fc=$conectado->conn->prepare(
+			"delete from funcionarios where idfuncionario=:id");
+			$fc->bindValue(":id",$this->getIdFuncionario());
+			return $fc->execute();
         }
 
         public function buscarTodos(){
@@ -108,8 +126,17 @@
             "SELECT * FROM funcionarios as f 
             inner join usuarios as u on f.id_usuario = idusuario
             inner join experiencia as e on f.id_experiencia = e.idexperiencia
-            ORDER BY nomefuncionario DESC");
+            ORDER BY idfuncionario");
             $st->execute();
             return $st->fetchAll();
+        }
+
+        public function buscarTodosId(){
+            $conectado= new conexao();
+			$fc=$conectado->conn->prepare(
+			"select * from funcionarios where idfuncionario=:id");
+			$fc->bindValue(":id",$this->getIdFuncionario());
+			$fc->execute();	
+			return $fc->fetch();
         }
     }

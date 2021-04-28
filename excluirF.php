@@ -20,6 +20,7 @@
             .btnhm{width:80px;}
             .tablef{font-size: 16px;}
             .menu{background-color: #FFFFFF;width:1200px;display:flex;}
+            .btnsair {background-color:#ECF0F1;}
         </style>
     </head>
 
@@ -45,57 +46,25 @@
 
 			<?php
 				require_once 'funcionarios.php';
-				require_once "verifica.php";
 
-				
-				if(isset($_POST['nomeF'])){
-					$func = new funcionarios();
-					$func->setNomeFuncionario($_POST['nomeF']);
-					$func->setDataNascimento(date("Y-m-d", strtotime($_POST['datanascF'])));
-					$func->setCPF($_POST['cpfF']);
-					$func->setSalario($_POST['salarioF']);
-					$func->setCargo($_POST['cargoF']);
-					$func->setSetor($_POST['setorF']);
-					$func->setId_Experiencia($_POST['experienciaF']);
-					$func->setId_Usuario($_SESSION['codUser']);
-                    
-
-                    $cpf = $_POST['cpfF'];
-
-                    $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
-                    $stmt=$conn->prepare("select * from Funcionarios where cpf='$cpf'");
-                    $stmt->execute();
-                    
-
-                    if($stmt->rowCount() == 1){
-                        ?>
-                        <script>
-                        window.alert("CPF já cadastrado!");
-                        window.location.href="inserir.php";
-                        </script>
-                        <?php
-                    }else{
-                        if($func->inserirF()){
-                            ?>
-                            <script>
-                            window.alert("Funcionario inserido com sucesso!");
-                            window.location.href="home.php";
-                            </script>
-                            <?php
-                        }else{
-                            ?>
-                            <script>
-                            window.alert("Erro ao cadastrar Funcionario!");
-                            window.location.href="inserir.php";
-                            </script>
-                            <?php
-                        }
-                    }
-
-
-                    
-                    
-					
+				if(isset($_GET['idfuncionario'])){
+					$fc = new funcionarios();
+					$fc->setIdFuncionario($_GET['idfuncionario']);
+					if($fc->apagar()){
+						?>
+						<script>
+						window.alert("Funcionário excluido com sucesso!");
+						window.location.href="./home.php";
+						</script>
+						<?php
+					}else{
+								?>
+						<script>
+						window.alert("Erro ao excluir o funcionário!");
+						window.location.href="./home.php";
+						</script>
+						<?php
+					}
 				}
 			?>
 

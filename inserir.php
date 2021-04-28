@@ -41,64 +41,42 @@
             </ul>                
         </header>
 
-        <div class="px-4 py-5 my-2 text-center">
-
-			<?php
-				require_once 'funcionarios.php';
-				require_once "verifica.php";
-
-				
-				if(isset($_POST['nomeF'])){
-					$func = new funcionarios();
-					$func->setNomeFuncionario($_POST['nomeF']);
-					$func->setDataNascimento(date("Y-m-d", strtotime($_POST['datanascF'])));
-					$func->setCPF($_POST['cpfF']);
-					$func->setSalario($_POST['salarioF']);
-					$func->setCargo($_POST['cargoF']);
-					$func->setSetor($_POST['setorF']);
-					$func->setId_Experiencia($_POST['experienciaF']);
-					$func->setId_Usuario($_SESSION['codUser']);
-                    
-
-                    $cpf = $_POST['cpfF'];
-
-                    $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
-                    $stmt=$conn->prepare("select * from Funcionarios where cpf='$cpf'");
-                    $stmt->execute();
-                    
-
-                    if($stmt->rowCount() == 1){
-                        ?>
-                        <script>
-                        window.alert("CPF já cadastrado!");
-                        window.location.href="inserir.php";
-                        </script>
+        <div class="px-4 py-5 my-2 text-center">                
+    
+            <div id="inserirDados">
+                <h3>Inserir dados do funcionários</h3>
+                <form action="inserirF.php" method="post">
+                <p><label for="nomeF">Nome:</label><br />
+                <input type="text" name="nomeF" required></p>
+                <p><label for="datanascF">Data de Nascimento:</label><br />
+                <input type="date" name="datanascF"></p>
+                <p><label for="cpfF">CPF:</label><br />
+                <input type="text" name="cpfF"></p>
+                <p><label for="salarioF">Salario:</label><br />
+                <input type="text" name="salarioF" placeholder="5000.00"></p>
+                <p><label for="cargoF">Cargo:</label><br />
+                <input type="text" name="cargoF"></p>
+                <p><label for="setorF">Setor:</label><br />
+                <input type="text" name="setorF"></p>
+                <p><label for="experienciaF">Experiência:</label><br />
+                <select name="experienciaF">
+                    <option>Selecione:</option>
+                    <?php
+                        $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
+                        $stmt=$conn->prepare("select * from experiencia");
+                        $stmt->execute();
+                        $resp=$stmt->fetchAll();
+                        foreach($resp as $linha){?>
+                            <option value="<?php echo $linha['idexperiencia'];?>">
+                                <?php echo $linha['tipo']." ".$linha['quantidade']." ".$linha['tempo']; ?>
+                            </option>
                         <?php
-                    }else{
-                        if($func->inserirF()){
-                            ?>
-                            <script>
-                            window.alert("Funcionario inserido com sucesso!");
-                            window.location.href="home.php";
-                            </script>
-                            <?php
-                        }else{
-                            ?>
-                            <script>
-                            window.alert("Erro ao cadastrar Funcionario!");
-                            window.location.href="inserir.php";
-                            </script>
-                            <?php
-                        }
-                    }
-
-
-                    
-                    
-					
-				}
-			?>
-
-		</div>
+                        }?>
+                </select></p>
+                <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
+                </form>
+            </div> 
+            
+        </div>
     </body>
 </html>

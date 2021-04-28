@@ -1,4 +1,6 @@
-<!doctype html>
+
+
+    <!doctype html>
 <html lang="pt-BR">
     <head>
         <title>Gerenciamente de Funcionários</title>
@@ -53,58 +55,65 @@
     </head>
     
     <body>
+    
+<?php
+				require_once 'usuarios.php';
+				if(isset($_POST['email'])){
+					$us = new usuarios();
+					$us->setEmail($_POST['email']);
+					$us->setSenha($_POST['senha']);
+					if($us->alterarU()){
+                        ?>
+                        <script>
+						window.alert("Senha alterado com sucesso!");
+                        </script>
+                        <?php
+					}else{
+                        ?>
+                        <script>
+						window.alert("Erro ao alterar senha!");
+                        </script>
+                        <?php
+					}
+                    ?>
+                    <script>
+					window.location.href="index.php";
+                    </script>
+                    <?php
+				}
+			?>
         <section class="Form my-4 mx-5">
             <div class="container">
                 <div class="row no-gutters">
                     <div class="col-lg-5">
+                    
                         <img src="./assets/img/login.svg" alt="imagem login" class="img-fluid px-0 pt-5">
                     </div>
                     <div class="col-lg-7 px-5 pt-5">
-
-						<?php
-							require_once 'usuarios.php';
-							if(isset($_POST['nomeC'])){
-								$user = new usuarios();
-								$user->setNomeUsuario($_POST['nomeC']);
-								$user->setLogin($_POST['loginC']);
-								$user->setSenha($_POST['senhaC']);
-								$user->setEmail($_POST['emailC']);
-								$user->setTelefone($_POST['telefoneC']);
-
-                                $email = $_POST['emailC'];
-
-                                $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
-                                $stmt=$conn->prepare("select * from Usuarios where email='$email'");
-                                $stmt->execute();
-
-                                if($stmt->rowCount() == 1){
-                                    ?>
-                                    <script>
-                                    window.alert("E-mail já cadastrado!");
-                                    window.location.href="cadastro.php";
-                                    </script>
-                                    <?php
-                                }else{
-                                    if($user->inserirU()){
-                                        ?>
-                                        <script>
-                                        window.alert("Usuario inserido com sucesso!");
-                                        window.location.href="index.php";
-                                        </script>
-                                        <?php
-                                    }else{
-                                        ?>
-                                        <script>
-                                        window.alert("Erro ao cadastrar usuário!");
-                                        window.location.href="cadastro.php";
-                                        </script>
-                                        <?php
-                                    }
-							    }
-                            }
-						?>
-						
-					</div>
+                        <div id="loginPrincipal">
+                            <h1 class="font-weigth-bold py-3">Fazer Login</h1>
+                            <h4>Bem-vindo ao seu gerenciador de funcionários</h4>
+                            <form action="login.php" method="post">
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="text" name="usuario" placeholder="Login:" class="form-control my-4 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="password" name="senha" placeholder="Senha" class="form-control my-3 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <button type="submit" class="btn1 mt-3 mb-5">Logar</button>
+                                    </div>
+                                </div>
+                                <a href="esqueceu_senha.php">Esqueceu a senha?</a>
+                                <p>Não tem uma conta? <a href="cadastro.php">Crie uma conta aqui</a></p>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

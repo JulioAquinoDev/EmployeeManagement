@@ -11,7 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="js/script.js"></script>
         <style type="text/css">
-            * {margin: 0;padding: 0;box-sizing: border-box;}
+            *{margin: 0;padding: 0;box-sizing: border-box;}
             body{background-color: rgb(211, 218, 218);;}
             .base-login{width: 400px;margin-top: 100px;}
             .row2 {border-radius: 30px;box-shadow: 12px 12px 22px grey;}
@@ -20,6 +20,7 @@
             .btnhm{width:80px;}
             .tablef{font-size: 16px;}
             .menu{background-color: #FFFFFF;width:1200px;display:flex;}
+            .btnsair {background-color:#ECF0F1;}
         </style>
     </head>
 
@@ -45,60 +46,36 @@
 
 			<?php
 				require_once 'funcionarios.php';
-				require_once "verifica.php";
-
-				
-				if(isset($_POST['nomeF'])){
-					$func = new funcionarios();
-					$func->setNomeFuncionario($_POST['nomeF']);
-					$func->setDataNascimento(date("Y-m-d", strtotime($_POST['datanascF'])));
-					$func->setCPF($_POST['cpfF']);
-					$func->setSalario($_POST['salarioF']);
-					$func->setCargo($_POST['cargoF']);
-					$func->setSetor($_POST['setorF']);
-					$func->setId_Experiencia($_POST['experienciaF']);
-					$func->setId_Usuario($_SESSION['codUser']);
-                    
-
-                    $cpf = $_POST['cpfF'];
-
-                    $conn = new PDO("mysql:host=localhost;dbname=gerenc_empresa","root","");
-                    $stmt=$conn->prepare("select * from Funcionarios where cpf='$cpf'");
-                    $stmt->execute();
-                    
-
-                    if($stmt->rowCount() == 1){
+				if(isset($_POST['nome'])){
+					$fc = new funcionarios();
+					$fc->setIdFuncionario($_POST['id']);
+					$fc->setNomeFuncionario($_POST['nome']);
+					$fc->setDataNascimento(date("Y-m-d", strtotime($_POST['datanasc'])));
+					$fc->setCPF($_POST['cpf']);
+					$fc->setSalario($_POST['salario']);
+					$fc->setCargo($_POST['cargo']);
+					$fc->setSetor($_POST['setor']);
+					if($fc->alterar()){
                         ?>
                         <script>
-                        window.alert("CPF já cadastrado!");
-                        window.location.href="inserir.php";
+						window.alert("Funcionario alterado com sucesso!");
                         </script>
                         <?php
-                    }else{
-                        if($func->inserirF()){
-                            ?>
-                            <script>
-                            window.alert("Funcionario inserido com sucesso!");
-                            window.location.href="home.php";
-                            </script>
-                            <?php
-                        }else{
-                            ?>
-                            <script>
-                            window.alert("Erro ao cadastrar Funcionario!");
-                            window.location.href="inserir.php";
-                            </script>
-                            <?php
-                        }
-                    }
-
-
-                    
-                    
-					
+					}else{
+                        ?>
+                        <script>
+						window.alert("Erro ao alterar dados do Funcionário!");
+                        </script>
+                        <?php
+					}
+                    ?>
+                    <script>
+					window.location.href="home.php";
+                    </script>
+                    <?php
 				}
 			?>
-
+			
 		</div>
     </body>
 </html>

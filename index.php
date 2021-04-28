@@ -57,6 +57,7 @@
             <div class="container">
                 <div class="row no-gutters">
                     <div class="col-lg-5">
+                    
                         <img src="./assets/img/login.svg" alt="imagem login" class="img-fluid px-0 pt-5">
                     </div>
                     <div class="col-lg-7 px-5 pt-5">
@@ -79,7 +80,7 @@
                                         <button type="submit" class="btn1 mt-3 mb-5">Logar</button>
                                     </div>
                                 </div>
-                                <a href="#">Esqueceu a senha?</a>
+                                <a href="esqueceu_senha.php">Esqueceu a senha?</a>
                                 <p>Não tem uma conta? <a href="cadastro.php">Crie uma conta aqui</a></p>
                             </form>
                         </div>
