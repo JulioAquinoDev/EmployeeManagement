@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
     require_once "verifica.php";
-    
 ?>
 <html>
     <head>
@@ -9,28 +8,14 @@
         <meta charset="utf-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="js/script.js"></script>
-        <style type="text/css">
-            * {margin: 0;padding: 0;box-sizing: border-box;}
-            body{background-color: rgb(211, 218, 218);;}
-            .base-login{width: 400px;margin-top: 100px;}
-            .row2 {border-radius: 30px;box-shadow: 12px 12px 22px grey;}
-            .btnb{width:150px;height:100px;border-radius:20px;}
-            .btns{border-radius:50%;}
-            .btnhm{width:80px;}
-            .tablef{font-size: 16px;}
-            .menu{background-color: #FFFFFF;width:1200px;display:flex;}
-            .btnsair {background-color:#ECF0F1;}
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/style_in.css">
     </head>
-
     <body>
-
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">        
             <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3">           
                 <?php          
                     echo "<p>Gerenciamento de funcionários</p>";
-                    echo "<p>Bem vindo, ".$_SESSION['nameUser']."!</p>";
+                    echo "<p>Bem-vindo, ".$_SESSION['nameUser']."!</p>";
                 ?>
             </div>    
             <ul class="navbar-nav px-3">
@@ -41,9 +26,7 @@
                 </li>
             </ul>                
         </header>
-
-        <div class="px-4 py-5 my-2 text-center">
-            
+        <div class="px-4 py-5 my-2 text-center"> 
             <?php
                 require_once 'funcionarios.php';	
                 if(isset($_GET['idfuncionario'])){
@@ -54,7 +37,7 @@
                     <h3>Alterar dados do funcionário</h3>
                     <form action="alterarF2.php" method="POST">
                         <table class="table table-striped">
-                            <tr><td><p>Id:</td><td><p><input type="number" value="<?php echo $resp['idfuncionario']?>" name="id" readonly="true"></p></td></tr>
+                            <tr><td><p>ID:</td><td><p><input type="number" value="<?php echo $resp['idfuncionario']?>" name="id" readonly="true"></p></td></tr>
                             <tr><td><p>Nome:</td><td><p><input type="text" value="<?php echo $resp['nomefuncionario']?>" name="nome" required></p></td></tr>
                             <tr><td><p>Data de Nascimento:</td><td><p><input type="date" value="<?php echo $resp['datanascimento']?>" name="datanasc"></p></td></tr>
                             <tr><td><p>CPF:</td><td><p><input type="text" value="<?php echo $resp['cpf']?>" name="cpf"></p></td></tr>
@@ -67,7 +50,6 @@
                 <?php
                 }
             ?>
-
         </div>
     </body>
 </html>

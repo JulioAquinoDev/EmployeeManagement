@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(211, 218, 218);
+    ;
+}
+
+.base-login {
+    width: 400px;
+    margin-top: 100px;
+}
+
+.row2 {
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
+}
+
+.btnb {
+    width: 150px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.btnhm {
+    width: 80px;
+}
+
+.tablef {
+    font-size: 16px;
+}
+
+.menu {
+    background-color: #FFFFFF;
+    width: 1200px;
+    display: flex;
+}
+
+.btnsair {
+    background-color: #ECF0F1;
+}

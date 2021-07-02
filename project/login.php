@@ -7,7 +7,6 @@
             "login=:u and senha=:s");
         $stmt->bindValue(":u",$_POST['usuario']);
         $stmt->bindValue(":s",$_POST['senha']);
-
         $stmt->execute();
 
         if($stmt->rowCount()==1){

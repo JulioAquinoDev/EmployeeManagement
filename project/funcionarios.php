@@ -73,11 +73,6 @@
             return $this->id_usuario;
         }
 
-
-        public function imprime(){
-
-        }
-
         public function inserirF(){
             $cnx = new conexao();
             $fc=$cnx->conn->prepare("INSERT INTO
@@ -95,7 +90,6 @@
         }
 
         public function alterar(){
-
             $conectado= new conexao();
 			$fc=$conectado->conn->prepare(
 			"update funcionarios set nomefuncionario=:n,
