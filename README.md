@@ -1,7 +1,30 @@
 # Employee management
-#### Development of a web system to register employee data and manage the data. The system can enter data, update data and delete.
 
-#### Project developed in the Web Programming course at Universidade São Francisco.
+## Project developed in the Web Programming course at University San Francisco.
+
+
+
+### Project's goal:
+
+#### 	Manage employees. Where the user can register the data of the employees. A web system, with CRUD operations. Create, read, update and delete data.
+
+
+
+### Tools used:
+
+- #### HTML
+
+- #### CSS
+
+- #### PHP
+
+- #### MySQL
+
+- #### Visual Studio Code
+
+#### 
+
+### Wireframes:
 
 <img src="IMG\login.jpg" />
 
