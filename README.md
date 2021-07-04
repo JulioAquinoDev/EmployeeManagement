@@ -1,6 +1,6 @@
 # Employee management
 
-## Project developed in the Web Programming course at University San Francisco.
+## Project developed in the Web Programming course at San Francisco University.
 
 
 
